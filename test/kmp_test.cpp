@@ -9,20 +9,14 @@ int main(int argc, char* argv[]) {
 }
 
 INSTANTIATE_TEST_CASE_P(Default, KMPTest_kmp, ::testing::Values(
-        KMPTest_shift::generateRandomString(10),
-        KMPTest_shift::generateRandomString(1000),
-        KMPTest_shift::generateRandomString(5000000)
+        test_type_kmp("abcdefabc", "abc"),
+        test_type_kmp("123112334351233", "123"),
+        test_type_kmp("abc", "def"),
+        test_type_kmp("abcabcabc", "abcabc")
 ));
 
 TEST_P(KMPTest_kmp, test_eq) {
-    cout << COUT_GTEST_MGT << "Checking correct input with text length " << text.length() << " and pattern length "
-         << pattern.length() << ANSI_TXT_DFT << endl;
-    EXPECT_EQ(kmp->pattern_search(pattern, text), KMPTest_kmp::findAllOccurances(pattern, text));
-}
-
-TEST_P(KMPTest_kmp, test_neq) {
-    pattern += to_string(0);
-    cout << COUT_GTEST_MGT << "Checking incorrect input (pattern doesn't exist in text) with text length "
-         << text.length() << " and pattern length " << pattern.length() << ANSI_TXT_DFT << endl;
+    cout << COUT_GTEST_MGT << "Checking text \"" << text << "\" and pattern \"" << pattern << "\"" << ANSI_TXT_DFT
+         << endl;
     EXPECT_EQ(kmp->pattern_search(pattern, text), KMPTest_kmp::findAllOccurances(pattern, text));
 }

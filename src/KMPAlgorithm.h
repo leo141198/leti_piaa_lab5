@@ -8,9 +8,9 @@ using namespace std;
 
 class KMPAlgorithm {
 public:
-    string pattern_search(string P, string T);
+    string pattern_search(const string& P_, const string& T_);
 
-    string cycle_shift(string P, string T);
+    string cycle_shift(const string& P_, const string& T_);
 
 private:
     int* prefix(const string& input);

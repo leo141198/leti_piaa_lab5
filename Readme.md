@@ -15,7 +15,8 @@
  `cmake --build "" --target kmp_test`
   - Поиска циклического сдвига
  `cmake --build "" --target cycle_shift_test`
-
+## Сравнение скорости работы алгоритмов
+ `cmake --build "" --target faster_algorithm`
 # Запуск программ
 ## Алгоритмы
 > Программы ожидает ввод, аналогичный вводу на Stepik
@@ -28,3 +29,5 @@
 `./kmp_test`
 - Алгоритма поиска циклического сдвига
 `./cycle_shift_test`
+## Сравнение скорости работы алгоритмов
+ `./faster_algorithm`

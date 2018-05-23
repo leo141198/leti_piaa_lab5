@@ -19,11 +19,11 @@ int* KMPAlgorithm::prefix(const string& input) {
     return sub_size;
 }
 
-string KMPAlgorithm::pattern_search(string P, string T) {
+string KMPAlgorithm::pattern_search(const string& P_, const string& T_) {
     string positions;
     stringstream output;
-    int size = P.length();
-    P += "@" + T;
+    int size = P_.length();
+    string P = P_ + "@" + T_;
     auto result = prefix(P);
     for(int i = 0; i < P.length(); i++) {
         if(result[i] == size) {
@@ -38,12 +38,12 @@ string KMPAlgorithm::pattern_search(string P, string T) {
     }
 }
 
-string KMPAlgorithm::cycle_shift(string P, string T) {
-    int size = P.length();
-    if(P.length() != T.length()) {
+string KMPAlgorithm::cycle_shift(const string& P_, const string& T_) {
+    int size = P_.length();
+    if(P_.length() != T_.length()) {
         return "-1";
     }
-    T += "@" + P + P;
+    string T = T_ + "@" + P_ + P_;
     auto result = prefix(T);
     for(size_t i = 0; i < T.length(); i++) {
         if(result[i] == size) {

@@ -13,8 +13,8 @@
 #define COUT_GTEST ANSI_TXT_GRN << GTEST_BOX
 #define COUT_GTEST_MGT COUT_GTEST << ANSI_TXT_MGT
 
-typedef pair<string, int> test_type_shift;
-typedef string test_type_kmp;
+typedef tuple<string, string, string> test_type_shift;
+typedef pair<string,string> test_type_kmp;
 
 class KMPTest : public ::testing::Test {
 public:
@@ -34,7 +34,7 @@ protected:
 
 class KMPTest_shift : public KMPTest, public testing::WithParamInterface<test_type_shift> {
 protected:
-    int num;
+    string res;
 
     void SetUp() override;
 };
@@ -44,7 +44,7 @@ protected:
     void SetUp() override;
 
 public:
-    string findAllOccurances(string& pattern, string& text);
+    string findAllOccurances(const string& pattern, const string& text);
 };
 
 #endif //PIAA_LAB5_KMPTEST_H

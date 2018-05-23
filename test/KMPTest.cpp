@@ -17,24 +17,24 @@ int KMPTest::getRandomNumber(int max) {
 void KMPTest_shift::SetUp() {
     kmp = new KMPAlgorithm;
     auto params = GetParam();
-    text = params.first;
-    num = params.second;
-    pattern = text.substr(num) + text.substr(0, num);
+    text = std::get<0>(params);
+    pattern = std::get<1>(params);
+    res = std::get<2>(params);
 }
 
 void KMPTest_kmp::SetUp() {
     kmp = new KMPAlgorithm;
-    text = GetParam();
-    int initial = getRandomNumber(text.length());
-    pattern = text.substr(initial, getRandomNumber(text.length()-initial));
+    auto params = GetParam();
+    text = params.first;
+    pattern = params.second;
 }
 
-string KMPTest_kmp::findAllOccurances(string& pattern, string& text) {
+string KMPTest_kmp::findAllOccurances(const string& pattern, const string& text) {
     string result;
     size_t pos = text.find(pattern);
     while(pos != std::string::npos) {
         result += to_string(pos) + ',';
-        pos = text.find(pattern, pos + pattern.size());
+        pos = text.find(pattern, pos + 1);
     }
     result = result.substr(0, result.length() - 1);
     if(result == "") {
