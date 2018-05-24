@@ -3,6 +3,7 @@
 
 #include <string>
 #include <random>
+#include <algorithm>
 #include <gtest/gtest.h>
 #include "../src/KMPAlgorithm.h"
 
